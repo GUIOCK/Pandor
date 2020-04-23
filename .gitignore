@@ -3,8 +3,10 @@
 /*/
 
 # Inverse ignore some stuff
-!/Assets/
-!/ProjectSettings/
+!/Pandor/Assets/
+!Pandor/Assets/
+!Pandor/ProjectSettings/
+!/Pandor/ProjetSettings/
 !.gitignore
 
 # OS Stuff
