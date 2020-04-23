@@ -60,6 +60,7 @@ crashlytics-build.properties
 
 Pandor/Library/ArtifactDB
 Pandor/Library/ArtifactDB
+Pandor/Library/*
 Pandor/Library/PackageCache/com.unity.collab-proxy@1.2.16/.npmignore
 Pandor/Library/PackageCache/com.unity.collab-proxy@1.2.16/CHANGELOG.md
 Pandor/Library/PackageCache/com.unity.collab-proxy@1.2.16/CHANGELOG.md.meta
