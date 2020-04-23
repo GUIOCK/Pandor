@@ -6,7 +6,7 @@ public class InfectedScript : MonoBehaviour
 {
     [SerializeField]
     [Range(0, 100)]
-    int infectionRate = 0;
+    public int infectionRate = 0;
 
     // Start is called before the first frame update
     void Start()
