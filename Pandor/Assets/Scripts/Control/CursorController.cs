@@ -15,12 +15,17 @@ public class CursorController : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
-    private GameObject infectedHouse;
+    public GameObject infectedHouse;
     private string nbInfected;
     private bool haveHome;
     private bool haveChooseNbInfected;
     private int number = 0;
-    private int resultInfected = 0;
+    public int resultInfected = 0;
+
+    private void Start()
+    {
+        Time.timeScale = 0; 
+    }
 
     void Update()
     {
@@ -30,8 +35,12 @@ public class CursorController : MonoBehaviour
             Debug.Log("clic");
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.name == "Foyer" && !haveHome)
+                Debug.Log("presque");
+
+                if (hit.collider.name == "InfectIndicator"  && !haveHome)
                 {
+                    Debug.Log("ok");
+
                     infectedHouse = hit.collider.gameObject;
                     getText.text = "Veuillez choisir le taux d'infecté";
                     haveHome = true;
@@ -57,6 +66,7 @@ public class CursorController : MonoBehaviour
             menuInfected.SetActive(false);
             if (haveHome)
             {
+                Time.timeScale = 1;
                 DisplayMenu();
             }
         }
