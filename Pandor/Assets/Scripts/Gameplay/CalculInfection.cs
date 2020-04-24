@@ -12,12 +12,12 @@ public class CalculInfection : MonoBehaviour
     int tauxConfinement = 0;        //
 
     private int risqueAvecMasque = 16;
-    private int risqueAvecGel = 0;
-    private int risqueAvecConfinement = 0;
+    private int risqueAvecGel = 14;
+    private int risqueAvecConfinement = 1;
 
     private int risqueSansMasque = 95;
-    private int risqueSansGel = 0;
-    private int risqueSansConfinement = 0;
+    private int risqueSansGel = 95;
+    private int risqueSansConfinement = 95;
 
     private int risqueTotal = 0;        // Pourcentage
 
@@ -47,6 +47,6 @@ public class CalculInfection : MonoBehaviour
         {
             infectedScript.infectionRate = 100;
         }
-        Invoke("Increment", 2f);
+        Invoke("Increment", 10f);
     }
 }

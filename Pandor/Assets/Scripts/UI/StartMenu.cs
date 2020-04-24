@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    private string sceneGame = "FirstScene";
+    private string sceneGame = "FinalGameScene";
     [SerializeField] private GameObject aboutUs;
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject loading;
     public void LaunchGame()
     {
         DiplayMenu();
+        loading.SetActive(true);
         SceneManager.LoadScene(sceneGame);
 
     }
