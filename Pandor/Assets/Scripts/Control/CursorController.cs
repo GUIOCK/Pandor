@@ -15,6 +15,7 @@ public class CursorController : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+    //CalculInfection calculInfection;
     public GameObject infectedHouse;
     private string nbInfected;
     private bool haveHome;
@@ -24,7 +25,8 @@ public class CursorController : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 0; 
+        //calculInfection = new CalculInfection();
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -68,6 +70,7 @@ public class CursorController : MonoBehaviour
             {
                 Time.timeScale = 1;
                 DisplayMenu();
+                
             }
         }
     }
