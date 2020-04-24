@@ -23,6 +23,6 @@ public class ChoiceManager : MonoBehaviour
         Virus virusComponent = virus.GetComponent<Virus>();
         Debug.Log("click !" + virusComponent.name);
         Virus.SetActualVirus(virusComponent);
-        SceneManager.LoadScene("CameraWork");
+        SceneManager.LoadScene("FinalGameScene");
     }
 }

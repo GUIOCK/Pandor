@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    private string sceneGame = "FinalGameScene";
+    private string sceneGame = "VirusSelectionMenu";
     [SerializeField] private GameObject aboutUs;
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject mainMenu;
