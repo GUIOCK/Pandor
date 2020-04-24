@@ -5,11 +5,13 @@ using UnityEngine;
 public class CalculInfection : MonoBehaviour
 {
     InfectedScript infectedScript;
+
     int maxIncrementValue = 10;
 
     int tauxPortMasque = 0;         // Var paramètres foyer à récup
     int tauxUtilGel = 0;            //
     int tauxConfinement = 0;        //
+    float index = 0;
 
     private int risqueAvecMasque = 16;
     private int risqueAvecGel = 14;
@@ -24,19 +26,24 @@ public class CalculInfection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("okido");
         infectedScript = GetComponentInChildren<InfectedScript>();
-        Invoke("Increment", 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        index += Time.deltaTime;
+        if (index >= 2)
+        {
+            Increment();
+            index = 0;
+        }
     }
 
-    void Increment()
+    public void Increment()
     {
-        Debug.Log("pouet");
+        Debug.Log("pouet" + infectedScript.getMasks());
 
         risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 100)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 100))) + (risqueAvecGel * (infectedScript.getWashingHands() / 100)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 100))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 100)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 100)))) / 3;
         Debug.Log("Risque total : " + risqueTotal + "%");
@@ -47,6 +54,6 @@ public class CalculInfection : MonoBehaviour
         {
             infectedScript.infectionRate = 100;
         }
-        Invoke("Increment", 10f);
+        //Invoke("Increment", 10f);
     }
 }
