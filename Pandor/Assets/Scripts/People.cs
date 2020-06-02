@@ -14,28 +14,19 @@ public class People : MonoBehaviour
         CentralDistrict
     }
 
-    int adressNumber;
-    District homeDistrict;
     bool isMoving;
 
-    public Tuple<District, int> HomeAdress {
-        get
-        {
-            return new Tuple<District,int>(homeDistrict, adressNumber);
-        }
-    }
+    public Tuple<District, int> HomeAdress { get; private set; }
 
     public Tuple<District, int> TargetAdress{ get; private set; }
 
     public bool isInfected { get; set; }
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -43,8 +34,7 @@ public class People : MonoBehaviour
 
     public void SetHome(District homeDistrict, int homeNumber)
     {
-        this.homeDistrict = homeDistrict;
-        this.adressNumber = homeNumber;
+        this.HomeAdress = new Tuple<District, int>(homeDistrict, homeNumber);
     }
 
     public void ResetTarget()
