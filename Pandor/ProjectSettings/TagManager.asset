@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SelectedFoyer
   - FreeFoyer
+  - House
   layers:
   - Default
   - TransparentFX

@@ -7,20 +7,21 @@ using UnityEngine.AI;
 public class CharacterController : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public bool isArrived;
+    public bool isArrived = false;
     public float tagetX;
 
-    [SerializeField] private GameObject market;
+    [SerializeField] private GameObject building;
 
     private Vector3 target;
     private Vector3 house;
     private float timeStaying = 5f;
+    private Building build;
 
     // Update is called once per frame
     private void Start()
     {
-        target = new Vector3(tagetX, transform.position.y, -5.4f);
-        //house = new Vector3(0f, 0f, 0f);
+        build = building.GetComponent<Building>();
+        target = GenerateTarget();
         house = transform.position;
         
     }
@@ -46,9 +47,14 @@ public class CharacterController : MonoBehaviour
     {
         agent.SetDestination(house);
         CancelInvoke();
-
-
     }
 
+
+    private Vector3 GenerateTarget()
+    {
+        int randTarget = Random.Range(0, build.getBuildings.Length);
+        GameObject theTarget = build.getBuildings[randTarget];
+        return theTarget.transform.position;
+    }
 
 }
