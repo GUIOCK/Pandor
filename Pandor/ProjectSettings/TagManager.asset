@@ -8,6 +8,7 @@ TagManager:
   - FreeFoyer
   - House
   - Building
+  - PlayerModel
   layers:
   - Default
   - TransparentFX

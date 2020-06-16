@@ -21,6 +21,8 @@ public class People : MonoBehaviour
     private bool isMoving;
     MeshRenderer meshRenderer;
     CapsuleCollider capsuleCollider;
+    private GameObject[] playerModels;
+    private GameObject actualPlayerModel;
 
     public bool isInfected { get; set; }
     void Awake()
@@ -32,16 +34,22 @@ public class People : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.isTrigger = true;
+        playerModels = GameObject.FindGameObjectsWithTag("PlayerModel");
+        //Debug.Log("Player model : " + playerModels);
 
+        actualPlayerModel = playerModels[Random.Range(0, playerModels.Length - 1)];
+        //Debug.Log("Player model : " + actualPlayerModel);
+        //Debug.Break();
+        SetActualPlayerModel();
     }
 
     void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if(timer >= 2 && !isMoving)
+        if (timer >= 2 && !isMoving)
         {
             SetTarget();
-            if(target != actualPosition)
+            if (target != actualPosition)
             {
                 isMoving = true;
                 Move();
@@ -91,13 +99,13 @@ public class People : MonoBehaviour
 
     public void AddFriend(GameObject friend)
     {
-        if(this.friends == null)
+        if (this.friends == null)
         {
             this.friends = new List<GameObject>();
         }
         //if(friends.Find(go => friend == go) != null)
         //{
-           this.friends.Add(friend);
+        this.friends.Add(friend);
         //}
     }
 
@@ -109,18 +117,40 @@ public class People : MonoBehaviour
         }
         //if (centers.Find(go => center == go) != null)
         //{
-            this.centers.Add(center);
+        this.centers.Add(center);
         //}
     }
 
     public void SetVisible(bool isVisible)
     {
-            meshRenderer.enabled = isVisible;
-            capsuleCollider.enabled = isVisible;
+        //meshRenderer.enabled = isVisible;
+        capsuleCollider.enabled = isVisible;
+        Debug.Log(actualPlayerModel);
+        actualPlayerModel.GetComponent<SkinnedMeshRenderer>().enabled = isVisible;
     }
 
     public GameObject GetTarget()
     {
         return target;
+    }
+
+    private void SetActualPlayerModel()
+    {
+        foreach (GameObject model in playerModels)
+        {
+            if (model != actualPlayerModel)
+            {
+                model.SetActive(false);
+
+            }
+            else
+            {
+                Debug.Log("model : " + model);
+                Debug.Log("actual model : " + actualPlayerModel);
+                model.SetActive(true);
+                Debug.Break();
+                continue;
+            }
+        }
     }
 }
