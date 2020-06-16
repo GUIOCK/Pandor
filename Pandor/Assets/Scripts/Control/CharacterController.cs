@@ -26,6 +26,14 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private bool isInMovement = false;
 
+    public enum EnumChoice
+    {
+        home,
+        people,
+        center,
+        WTF
+    }
+
     // Update is called once per frame
     private void Start()
     {
@@ -77,30 +85,46 @@ public class CharacterController : MonoBehaviour
     {
         if (Random.Range(0, 3600) < 20 && !isInMovement)
         {
-            int chooseAction = Random.Range(0, 100);
-            Debug.Log(isArrived);
-            if (chooseAction <= stayHomePercentage)
+            //int chooseAction = Random.Range(0, 100);
+            //Debug.Log(isArrived);
+            //if (chooseAction <= stayHomePercentage)
+            //{
+            //    Debug.Log("Pas voir copaing");
+            //    isInMovement = false;
+            //}
+            //else if (chooseAction <= goToPeoplePercentage)
+            //{
+            //    Debug.Log("Voir copaing !!");
+            //    isInMovement = true;
+            //    agent.SetDestination(target);
+
+            //}
+            //else if (chooseAction <= goToCenterPercentage)
+            //{
+            //    Debug.Log("Peut être copaing ?");
+            //    isInMovement = true;
+            //    agent.SetDestination(target);
+            //}
+            //else
+            //{
+            //    Debug.Log("WTF");
+            //}
+            EnumChoice choice = setChoice(70, 20, 10);
+            switch (choice)
             {
-                Debug.Log("Pas voir copaing");
-                isInMovement = false;
-            }
-            else if (chooseAction <= goToPeoplePercentage)
-            {
-                Debug.Log("Voir copaing !!");
-                isInMovement = true;
-                agent.SetDestination(target);
-                
-            }
-            else if (chooseAction <= goToCenterPercentage)
-            {
-                Debug.Log("Peut être copaing ?");
-                isInMovement = true;
-                agent.SetDestination(target);
-                
-            }
-            else
-            {
-                Debug.Log("WTF");
+                case EnumChoice.home:
+                    Debug.Log("Pas voir copaing");
+                    break;
+                case EnumChoice.center:
+                    Debug.Log("Peut être copaing ?");
+                    break;
+                case EnumChoice.people:
+                    Debug.Log("Voir copaing !!");
+                    agent.SetDestination(target);
+                    break;
+                default:
+                    Debug.Log("WTF");
+                    break;
             }
         }
         if (isArrived)
@@ -111,4 +135,29 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+
+    public EnumChoice setChoice(int percentHome, int percentPeople, int percentCenter)
+    {
+        if (percentHome + percentPeople + percentCenter == 100)
+        {
+            int rand = Random.Range(0, 100);
+            Debug.Log(rand);
+            if (rand < percentHome)
+            {
+                return EnumChoice.home;
+            }
+            else if (rand < percentPeople + percentHome)
+            {
+                return EnumChoice.people;
+            }
+            else
+            {
+                return EnumChoice.center;
+            }
+        }
+        else
+        {
+            return EnumChoice.WTF;
+        }
+    }
 }
