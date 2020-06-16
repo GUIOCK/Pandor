@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 5640880858908262393}
   - component: {fileID: 5640880858909331623}
   - component: {fileID: 5665627408884542349}
+  - component: {fileID: -4209968546679285537}
   m_Layer: 0
   m_Name: SM_Bld_OfficeSquare_Base_02
   m_TagString: Untagged
@@ -174,11 +175,25 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5640880858911368097}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 15.275986, y: 3.5262113, z: 15.275986}
   m_Center: {x: -7.5, y: 1.7631056, z: -7.5}
+--- !u!114 &-4209968546679285537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640880858911368097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73c46c10ce5d48cca1edab8f9a3b432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 5015778181894536921, guid: 6c5202e9aaf024daa94a6336d71e0cb0, type: 3}
+  buildingType: 1
 --- !u!1001 &5640880858554522906
 PrefabInstance:
   m_ObjectHideFlags: 0

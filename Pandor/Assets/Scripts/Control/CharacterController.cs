@@ -30,7 +30,7 @@ public class CharacterController : MonoBehaviour
     private void Start()
     {
         build = building.GetComponent<Building>();
-        target = GenerateTarget();
+        //target = GenerateTarget();
         house = transform.position;
 
     }
@@ -66,12 +66,12 @@ public class CharacterController : MonoBehaviour
     }
 
 
-    private Vector3 GenerateTarget()
+    /*private Vector3 GenerateTarget()
     {
-        int randTarget = Random.Range(0, build.getBuildings.Length);
-        GameObject theTarget = build.getBuildings[randTarget];
-        return theTarget.transform.position;
-    }
+        //int randTarget = Random.Range(0, build.getBuildings.Length);
+        //GameObject theTarget = build.getBuildings[randTarget];
+        //return theTarget.transform.position;
+    }*/
 
     private void GenerateAction()
     {

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5015778181894536917}
   - component: {fileID: 5015778181894536916}
   - component: {fileID: 5015778181894536923}
-  - component: {fileID: 5015778181894536922}
   - component: {fileID: 5015778181894536912}
+  - component: {fileID: -2493588009940670236}
   m_Layer: 8
   m_Name: Pnj
   m_TagString: Player
@@ -93,8 +93,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.8
+  m_Height: 2.37
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5015778181894536923
@@ -119,23 +119,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5015778181894536922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5015778181894536921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b840fa4d02c4b71bf28da556d78d6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 5015778181894536923}
-  isArrived: 0
-  tagetX: 2.8
-  building: {fileID: 5555640555952968861, guid: ade47538ec8ee47ceb59810b5796a234,
-    type: 3}
 --- !u!54 &5015778181894536912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,3 +135,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2493588009940670236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015778181894536921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23709d8f2dc00e44c85495092eb15dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friends: []
+  centers: []
+  home: {fileID: 0}
+  agent: {fileID: 5015778181894536923}

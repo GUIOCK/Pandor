@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8604764413469717953}
   - component: {fileID: 8613610731874070951}
   - component: {fileID: 8614911634998447707}
+  - component: {fileID: 4068917826026452273}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOld_Large_04
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8604764413471880011}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -103,9 +104,23 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8604764413471880011}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43273199012410578, guid: 653b63cf4e5fdfd47962000c6f85b7c2, type: 2}
+--- !u!114 &4068917826026452273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8604764413471880011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73c46c10ce5d48cca1edab8f9a3b432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 5015778181894536921, guid: 6c5202e9aaf024daa94a6336d71e0cb0, type: 3}
+  buildingType: 0

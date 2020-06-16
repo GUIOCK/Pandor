@@ -13,11 +13,11 @@ public class AutoGenerationPnj : MonoBehaviour
     {
         building = GetComponent<Building>();
         //Debug.Log(building.arrayHouse);
-        foreach(GameObject obj in building.arrayHouse)
+        /*foreach(GameObject obj in building.arrayHouse)
         {
             GeneratePnj(obj);
             
-        }
+        }*/
     }
 
 
