@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6891921833076989283}
   - component: {fileID: 6864429005400904375}
   - component: {fileID: 6863776910542613509}
+  - component: {fileID: 7368985372093368617}
   m_Layer: 0
   m_Name: SM_Bld_Shop_64
   m_TagString: Untagged
@@ -101,7 +102,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891921833079451517}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -115,12 +116,26 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891921833079451517}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43613033862139046, guid: 08f252a4011784244a9d6c53e18b1f7c, type: 2}
+--- !u!114 &7368985372093368617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891921833079451517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73c46c10ce5d48cca1edab8f9a3b432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 5015778181894536921, guid: 6c5202e9aaf024daa94a6336d71e0cb0, type: 3}
+  buildingType: 1
 --- !u!1 &6891921833079485127
 GameObject:
   m_ObjectHideFlags: 0

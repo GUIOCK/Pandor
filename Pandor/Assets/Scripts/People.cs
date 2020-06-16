@@ -2,116 +2,125 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class People : MonoBehaviour
 {
-    [SerializeField]
-    District homeDistrict;
-    [SerializeField]
-    int homeAdress;
+    [SerializeField] private List<GameObject> friends;
+    [SerializeField] private List<GameObject> centers;
+    public GameObject home;
 
-    public enum District
-    {
-        NorthDistrict,
-        WestDistrict,
-        EastDistrict,
-        SouthDistrict,
-        CentralDistrict
-    }
-
-    [SerializeField]
-    bool isMoving;
-    bool moved = false;
-
-    public Tuple<District, int> HomeAdress { get; private set; }
-
-    public Tuple<District, int> TargetAdress { get; private set; }
-
-    public bool isInfected { get; set; }
-
-    float currentLerpTime = 0;
-    Vector3 currentPosition;
-
+    public NavMeshAgent agent;
+    private GameObject target;
+    private GameObject actualPosition;
+    private int stayHomePercentage = 70;
+    private int goToPeoplePercentage = 85;
+    private int goToCenterPercentage = 99;
+    private float timer = 25;
+    private bool isMoving;
     MeshRenderer meshRenderer;
     CapsuleCollider capsuleCollider;
 
+    public bool isInfected { get; set; }
+    void Awake()
+    {
+        gameObject.tag = "Player";
+    }
     void Start()
     {
-        SetHome(homeDistrict, homeAdress);
-        currentPosition = transform.position;
         meshRenderer = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleCollider.isTrigger = true;
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Random.Range(0, 1000) < 10 && !moved)
+        timer += Time.deltaTime;
+        if(timer >= 2 && !isMoving)
         {
-            SetTarget(District.SouthDistrict, 5);
-        }
-
-        if (this.TargetAdress != null)
-        {
-            isMoving = true;
-        }
-
-        if (isMoving)
-        {
-            SetVisible(true);
-            MoveToPosition(currentPosition, new Vector3(-7, 1, -2.5f), 5);
-            if (transform.position == new Vector3(-7, 1, -2.5f))
+            SetTarget();
+            if(target != actualPosition)
             {
-                isMoving = false;
-                moved = true;
-                ResetTarget();
+                isMoving = true;
+                Move();
             }
+        }
+    }
+
+    private void SetTarget()
+    {
+        int rand = Random.Range(1, 100);
+        if (rand < stayHomePercentage)
+        {
+            target = home;
+        }
+        else if (rand < goToPeoplePercentage)
+        {
+            target = friends[Random.Range(0, friends.Count)];
         }
         else
         {
-            SetVisible(false);
+            target = centers[Random.Range(0, centers.Count)];
         }
     }
 
-    public void SetHome(District homeDistrict, int homeNumber)
+    public void Move()
     {
-        this.HomeAdress = new Tuple<District, int>(homeDistrict, homeNumber);
+        SetVisible(true);
+
+        agent.isStopped = false;
+        /*NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(transform.position, out myNavHit, 100, -1))
+        {
+            transform.position = myNavHit.position;
+        }*/
+        agent.SetDestination(target.transform.position);
+    }
+    public void Stop()
+    {
+        SetVisible(false);
+
+        Debug.Log("Stopped !");
+        agent.isStopped = true;
+        timer = 0;
+        isMoving = false;
+        actualPosition = target;
     }
 
-    public void ResetTarget()
+    public void AddFriend(GameObject friend)
     {
-        this.TargetAdress = null;
+        if(this.friends == null)
+        {
+            this.friends = new List<GameObject>();
+        }
+        //if(friends.Find(go => friend == go) != null)
+        //{
+           this.friends.Add(friend);
+        //}
     }
 
-    public void SetTarget(District targetDistrict, int targetNumber)
+    public void AddCenter(GameObject center)
     {
-        this.TargetAdress = new Tuple<District, int>(targetDistrict, targetNumber);
+        if (this.centers == null)
+        {
+            this.centers = new List<GameObject>();
+        }
+        //if (centers.Find(go => center == go) != null)
+        //{
+            this.centers.Add(center);
+        //}
     }
 
     public void SetVisible(bool isVisible)
     {
-        if (isVisible)
-        {
-            meshRenderer.enabled = true;
-            capsuleCollider.enabled = true;
-        }
-        else
-        {
-            meshRenderer.enabled = false;
-            capsuleCollider.enabled = false;
-        }
+            meshRenderer.enabled = isVisible;
+            capsuleCollider.enabled = isVisible;
     }
 
-    public void MoveToPosition(Vector3 currentPosition, Vector3 targetPosition, float trajectTime)
+    public GameObject GetTarget()
     {
-        currentLerpTime += Time.deltaTime;
-        if (currentLerpTime >= trajectTime)
-        {
-            currentLerpTime = trajectTime;
-        }
-        float perc = currentLerpTime / trajectTime;
-        transform.position = Vector3.Lerp(currentPosition, targetPosition, perc);
+        return target;
     }
-
-
 }
