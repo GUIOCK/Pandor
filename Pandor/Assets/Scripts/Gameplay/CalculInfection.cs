@@ -26,7 +26,7 @@ public class CalculInfection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("okido");
+        //Debug.Log("okido");
         infectedScript = GetComponentInChildren<InfectedScript>();
     }
 
@@ -36,17 +36,18 @@ public class CalculInfection : MonoBehaviour
         index += Time.deltaTime;
         if (index >= 2)
         {
-            Increment();
+            risqueTotal = Increment();
             index = 0;
         }
     }
 
-    public void Increment()
+    public int Increment()
     {
-        Debug.Log("pouet" + infectedScript.getMasks());
+        //Debug.Log("pouet" + infectedScript.getMasks());
+        int risqueTotal;
 
         risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 100)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 100))) + (risqueAvecGel * (infectedScript.getWashingHands() / 100)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 100))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 100)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 100)))) / 3;
-        Debug.Log("Risque total : " + risqueTotal + "%");
+        //Debug.Log("Risque total : " + risqueTotal + "%");
         maxIncrementValue = risqueTotal; // La vitesse d'augmentation maximale correspond au risque d'atrapper le virus (ex : si 100% de risque, 100% du foyer va finir contaminé très rapidement)
 
         infectedScript.infectionRate += Random.Range(0, maxIncrementValue);
@@ -55,5 +56,8 @@ public class CalculInfection : MonoBehaviour
             infectedScript.infectionRate = 100;
         }
         //Invoke("Increment", 10f);
+        return risqueTotal;
     }
+
+    
 }
