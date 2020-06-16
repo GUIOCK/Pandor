@@ -112,4 +112,6 @@ public class People : MonoBehaviour
         float perc = currentLerpTime / trajectTime;
         transform.position = Vector3.Lerp(currentPosition, targetPosition, perc);
     }
+
+
 }
