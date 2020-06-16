@@ -18,7 +18,7 @@ public class Building : MonoBehaviour
         get { return house; }
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         house = GameObject.FindGameObjectsWithTag("House");
     }

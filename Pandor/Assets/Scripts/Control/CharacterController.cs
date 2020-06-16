@@ -17,35 +17,51 @@ public class CharacterController : MonoBehaviour
     private float timeStaying = 5f;
     private Building build;
 
+
+    private int stayHomePercentage = 70;
+
+    private int goToPeoplePercentage = 85;
+
+    private int goToCenterPercentage = 99;
+    [SerializeField]
+    private bool isInMovement = false;
+
     // Update is called once per frame
     private void Start()
     {
         build = building.GetComponent<Building>();
         target = GenerateTarget();
         house = transform.position;
-        
+
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
-        Debug.Log("ma pos : " + transform.position);
-		if (Input.GetMouseButtonDown(0))
-		{
-            agent.SetDestination(target);
-        }
-        else if (isArrived)
+        GenerateAction();
+        if (transform.position == house)
         {
-            isArrived = false;
-            InvokeRepeating("DestinationToHouse", timeStaying, 10f);
-            
+            Debug.Log("Je suis à la maison");
+            isInMovement = false;
         }
+
+        //Debug.Log("ma pos : " + transform.position);
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    agent.SetDestination(target);
+        //}
+        //else if (isArrived)
+        //{
+        //    isArrived = false;
+        //    InvokeRepeating("DestinationToHouse", timeStaying, 10f);
+        //}
     }
 
 
     public void DestinationToHouse()
     {
         agent.SetDestination(house);
+        //isInMovement = false;
         CancelInvoke();
     }
 
@@ -55,6 +71,44 @@ public class CharacterController : MonoBehaviour
         int randTarget = Random.Range(0, build.getBuildings.Length);
         GameObject theTarget = build.getBuildings[randTarget];
         return theTarget.transform.position;
+    }
+
+    private void GenerateAction()
+    {
+        if (Random.Range(0, 3600) < 20 && !isInMovement)
+        {
+            int chooseAction = Random.Range(0, 100);
+            Debug.Log(isArrived);
+            if (chooseAction <= stayHomePercentage)
+            {
+                Debug.Log("Pas voir copaing");
+                isInMovement = false;
+            }
+            else if (chooseAction <= goToPeoplePercentage)
+            {
+                Debug.Log("Voir copaing !!");
+                isInMovement = true;
+                agent.SetDestination(target);
+                
+            }
+            else if (chooseAction <= goToCenterPercentage)
+            {
+                Debug.Log("Peut être copaing ?");
+                isInMovement = true;
+                agent.SetDestination(target);
+                
+            }
+            else
+            {
+                Debug.Log("WTF");
+            }
+        }
+        if (isArrived)
+        {
+            //Debug.Break();
+            isArrived = false;
+            InvokeRepeating("DestinationToHouse", timeStaying, 10f);
+        }
     }
 
 }
