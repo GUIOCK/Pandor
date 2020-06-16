@@ -12,6 +12,7 @@ public class AutoGenerationPnj : MonoBehaviour
     void Start()
     {
         building = GetComponent<Building>();
+        //Debug.Log(building.arrayHouse);
         foreach(GameObject obj in building.arrayHouse)
         {
             GeneratePnj(obj);
@@ -22,7 +23,7 @@ public class AutoGenerationPnj : MonoBehaviour
 
     private void GeneratePnj(GameObject obj)
     {
-        int nbPnjPerHouse = Random.Range(2, 6);
+        int nbPnjPerHouse = Random.Range(2, 20);
         Vector3 initPosition;
         for (int i = 1; i < nbPnjPerHouse; i++)
         {
