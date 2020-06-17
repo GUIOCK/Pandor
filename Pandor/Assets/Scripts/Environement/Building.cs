@@ -78,7 +78,6 @@ public class Building : MonoBehaviour
     void SetupNPCs()
     {
         int nbPeople = Random.Range(1, 4);
-        Debug.Log("Building " + gameObject.name + " a " + nbPeople);
         for (int i = 0; i < nbPeople; i++)
         {
             GameObject npc = Instantiate(this.npc,transform.position,transform.rotation);

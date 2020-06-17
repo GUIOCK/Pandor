@@ -7,6 +7,14 @@ using Random = UnityEngine.Random;
 
 public class People : MonoBehaviour
 {
+    public enum EnumChoice
+    {
+        home,
+        people,
+        center,
+        WTF
+    }
+
     [SerializeField] private List<GameObject> friends;
     [SerializeField] private List<GameObject> centers;
     public GameObject home;
@@ -21,8 +29,6 @@ public class People : MonoBehaviour
     private bool isMoving;
     MeshRenderer meshRenderer;
     CapsuleCollider capsuleCollider;
-    private GameObject[] playerModels;
-    private GameObject actualPlayerModel;
 
     public bool isInfected { get; set; }
     void Awake()
@@ -34,13 +40,6 @@ public class People : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.isTrigger = true;
-        playerModels = GameObject.FindGameObjectsWithTag("PlayerModel");
-        //Debug.Log("Player model : " + playerModels);
-
-        actualPlayerModel = playerModels[Random.Range(0, playerModels.Length - 1)];
-        //Debug.Log("Player model : " + actualPlayerModel);
-        //Debug.Break();
-        SetActualPlayerModel();
     }
 
     void FixedUpdate()
@@ -59,18 +58,21 @@ public class People : MonoBehaviour
 
     private void SetTarget()
     {
-        int rand = Random.Range(1, 100);
-        if (rand < stayHomePercentage)
+        EnumChoice choice = setChoice(70, 20, 10);
+        switch (choice)
         {
-            target = home;
-        }
-        else if (rand < goToPeoplePercentage)
-        {
-            target = friends[Random.Range(0, friends.Count)];
-        }
-        else
-        {
-            target = centers[Random.Range(0, centers.Count)];
+            case EnumChoice.home:
+                target = home;
+                break;
+            case EnumChoice.center:
+                target = centers[Random.Range(0, centers.Count)];
+                break;
+            case EnumChoice.people:
+                target = friends[Random.Range(0, friends.Count)];
+                break;
+            default:
+                Debug.Log("WTF");
+                break;
         }
     }
 
@@ -79,18 +81,11 @@ public class People : MonoBehaviour
         SetVisible(true);
 
         agent.isStopped = false;
-        /*NavMeshHit myNavHit;
-        if (NavMesh.SamplePosition(transform.position, out myNavHit, 100, -1))
-        {
-            transform.position = myNavHit.position;
-        }*/
         agent.SetDestination(target.transform.position);
     }
     public void Stop()
     {
         SetVisible(false);
-
-        Debug.Log("Stopped !");
         agent.isStopped = true;
         timer = 0;
         isMoving = false;
@@ -103,10 +98,7 @@ public class People : MonoBehaviour
         {
             this.friends = new List<GameObject>();
         }
-        //if(friends.Find(go => friend == go) != null)
-        //{
         this.friends.Add(friend);
-        //}
     }
 
     public void AddCenter(GameObject center)
@@ -115,18 +107,14 @@ public class People : MonoBehaviour
         {
             this.centers = new List<GameObject>();
         }
-        //if (centers.Find(go => center == go) != null)
-        //{
         this.centers.Add(center);
-        //}
     }
 
     public void SetVisible(bool isVisible)
     {
         //meshRenderer.enabled = isVisible;
         capsuleCollider.enabled = isVisible;
-        Debug.Log(actualPlayerModel);
-        actualPlayerModel.GetComponent<SkinnedMeshRenderer>().enabled = isVisible;
+        transform.Find("skin").GetComponent<SkinPNJ>().SendMessage("IsVisible", isVisible);
     }
 
     public GameObject GetTarget()
@@ -134,23 +122,27 @@ public class People : MonoBehaviour
         return target;
     }
 
-    private void SetActualPlayerModel()
+    public EnumChoice setChoice(int percentHome, int percentPeople, int percentCenter)
     {
-        foreach (GameObject model in playerModels)
+        if (percentHome + percentPeople + percentCenter == 100)
         {
-            if (model != actualPlayerModel)
+            int rand = Random.Range(0, 100);
+            if (rand < percentHome)
             {
-                model.SetActive(false);
-
+                return EnumChoice.home;
+            }
+            else if (rand < percentPeople + percentHome)
+            {
+                return EnumChoice.people;
             }
             else
             {
-                Debug.Log("model : " + model);
-                Debug.Log("actual model : " + actualPlayerModel);
-                model.SetActive(true);
-                Debug.Break();
-                continue;
+                return EnumChoice.center;
             }
+        }
+        else
+        {
+            return EnumChoice.WTF;
         }
     }
 }
