@@ -370,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 115430, guid: 471247d5cf89b2c46bcde0f08524197e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 115430, guid: 471247d5cf89b2c46bcde0f08524197e, type: 3}
       propertyPath: m_TagString
@@ -435,6 +435,10 @@ PrefabInstance:
     - target: {fileID: 182682, guid: 471247d5cf89b2c46bcde0f08524197e, type: 3}
       propertyPath: m_TagString
       value: PlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 418724, guid: 471247d5cf89b2c46bcde0f08524197e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 472912, guid: 471247d5cf89b2c46bcde0f08524197e, type: 3}
       propertyPath: m_LocalPosition.x
