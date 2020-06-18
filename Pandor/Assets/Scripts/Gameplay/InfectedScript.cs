@@ -7,7 +7,7 @@ public class InfectedScript : MonoBehaviour
 {
     [SerializeField]
     [Range(0, 100)]
-    public int infectionRate = 0;
+    public float infectionRate = 0;
     CursorController cursorController;
     GameObject currentHouse;
 
@@ -36,16 +36,18 @@ public class InfectedScript : MonoBehaviour
     void Update()
     {
         currentHouse = cursorController.infectedHouse;
-        Renderer renderer = GetComponent<Renderer>();
+        //Renderer renderer = GetComponent<Renderer>();
         Color color = new Color();
-        
+
+        /*
         color = renderer.material.color;
         color.r = (float)infectionRate / 100;
         color.g = (100 - (float)infectionRate) / 100;
         renderer.material.color = color;
+        */
     }
     
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         DisplaySideMenu();
     }
@@ -61,9 +63,9 @@ public class InfectedScript : MonoBehaviour
         {
             this.tag = "FreeFoyer";
         }
-    }
+    }*/
 
-    public int getInfectionRate()
+    public float getInfectionRate()
     {
         return this.infectionRate;
     }

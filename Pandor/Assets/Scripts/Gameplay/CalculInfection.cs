@@ -6,7 +6,7 @@ public class CalculInfection : MonoBehaviour
 {
     InfectedScript infectedScript;
 
-    int maxIncrementValue = 10;
+    float maxIncrementValue = 10;
 
     int tauxPortMasque = 0;         // Var paramètres foyer à récup
     int tauxUtilGel = 0;            //
@@ -21,7 +21,7 @@ public class CalculInfection : MonoBehaviour
     private int risqueSansGel = 95;
     private int risqueSansConfinement = 95;
 
-    private int risqueTotal = 0;        // Pourcentage
+    private float risqueTotal = 0;        // Pourcentage
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +41,12 @@ public class CalculInfection : MonoBehaviour
         }
     }
 
-    public int Increment()
+    public float Increment()
     {
         //Debug.Log("pouet" + infectedScript.getMasks());
-        int risqueTotal;
+        float risqueTotal;
 
-        risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 100)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 100))) + (risqueAvecGel * (infectedScript.getWashingHands() / 100)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 100))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 100)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 100)))) / 3;
+        risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 1000)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 1000))) + (risqueAvecGel * (infectedScript.getWashingHands() / 1000)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 1000))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 1000)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 1000)))) / 300;
         //Debug.Log("Risque total : " + risqueTotal + "%");
         maxIncrementValue = risqueTotal; // La vitesse d'augmentation maximale correspond au risque d'atrapper le virus (ex : si 100% de risque, 100% du foyer va finir contaminé très rapidement)
 

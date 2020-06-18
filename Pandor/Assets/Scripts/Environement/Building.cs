@@ -83,6 +83,7 @@ public class Building : MonoBehaviour
             GameObject npc = Instantiate(this.npc,transform.position,transform.rotation);
             People npcComponent = npc.GetComponent<People>();
             npcComponent.home = this.gameObject;
+            npcComponent.calculInfection = GetComponentInParent<CalculInfection>();
             int nbFriends = Random.Range(1, 5);
             for (int j = 0; j < nbFriends; j++)
             {

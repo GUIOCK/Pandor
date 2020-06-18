@@ -9,6 +9,7 @@ TagManager:
   - House
   - Building
   - PlayerModel
+  - TransmissionZone
   layers:
   - Default
   - TransparentFX
