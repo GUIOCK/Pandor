@@ -6,7 +6,7 @@ public class SkinPNJ : MonoBehaviour
 {
     GameObject skin;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         skin = GetSkin();
         for (int i = 0; i < transform.childCount; i++)
@@ -28,8 +28,8 @@ public class SkinPNJ : MonoBehaviour
         return skins[Random.Range(0, skins.Count)];
     }
 
-    private void IsVisible (bool isVisible)
+    private void IsVisible(bool isVisible)
     {
-        //skin.GetComponent<SkinnedMeshRenderer>().enabled = isVisible;
+        skin.GetComponent<SkinnedMeshRenderer>().enabled = isVisible;
     }
 }
