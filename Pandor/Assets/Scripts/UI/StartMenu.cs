@@ -39,7 +39,6 @@ public class StartMenu : MonoBehaviour
         foreach (GameObject district in districts)
         {
             districtsNames.Add(new Dropdown.OptionData() { text = district.GetComponent<District>().DistrictName });
-            Debug.Log(district);
         }
 
         choiceDropdown.AddOptions(districtsNames);
