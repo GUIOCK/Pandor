@@ -7,18 +7,19 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+
     private string sceneGame = "VirusSelectionMenu";
     [SerializeField] private GameObject aboutUs;
-    [SerializeField] private GameObject tutorial;
+    //[SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject loading;
-    public void LaunchGame()
-    {
-        DiplayMenu();
-        loading.SetActive(true);
-        SceneManager.LoadScene(sceneGame);
+    //[SerializeField] private GameObject loading;
 
-    }
+    //public void LaunchGame()
+    //{
+    //    DiplayMenu();
+    //    loading.SetActive(true);
+    //    SceneManager.LoadScene(sceneGame);
+    //}
 
     public void MainMenu()
     {
@@ -26,11 +27,11 @@ public class StartMenu : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
-    public void Tutorial()
-    {
-        DiplayMenu();
-        tutorial.SetActive(true);
-    }
+    //public void Tutorial()
+    //{
+    //    DiplayMenu();
+    //    tutorial.SetActive(true);
+    //}
 
     public void AboutUs()
     {
@@ -40,10 +41,9 @@ public class StartMenu : MonoBehaviour
 
     public void DiplayMenu()
     {
-        foreach(Transform menu in transform)
+        foreach (Transform menu in transform)
         {
             menu.gameObject.SetActive(false);
-            
         }
     }
 
