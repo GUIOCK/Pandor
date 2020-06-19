@@ -411,6 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8407117917662050913}
   - component: {fileID: 8617945061261090959}
+  - component: {fileID: 6022903197430262872}
   m_Layer: 0
   m_Name: Commercial district
   m_TagString: Untagged
@@ -458,6 +459,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0c1f785f1c85a4291ba96a287266f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6022903197430262872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407117917662050912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40af6db194a89de4ca12b90011916b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistrictName: Commercial district
 --- !u!1 &8407117917666690474
 GameObject:
   m_ObjectHideFlags: 0

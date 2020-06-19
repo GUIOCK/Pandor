@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2821934169988302543}
   - component: {fileID: 1403087178863766890}
+  - component: {fileID: 2514810909549470536}
   m_Layer: 0
   m_Name: Residential district
   m_TagString: Untagged
@@ -214,6 +215,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0c1f785f1c85a4291ba96a287266f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2514810909549470536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821934169988302542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40af6db194a89de4ca12b90011916b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistrictName: Residential district
 --- !u!1 &2821934170020886480
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class Building : MonoBehaviour
     static private List<GameObject> centerBuildings;
     [SerializeField] private GameObject npc;
     [SerializeField] private BuildingType buildingType;
+    public int preInfected { get; set; }
     enum BuildingType
     {
         Home,
@@ -21,8 +22,10 @@ public class Building : MonoBehaviour
     {
         //house = GameObject.FindGameObjectsWithTag("House");
         gameObject.tag = "Building";
+        preInfected = 0;
     }
-    void Start()
+
+    public void StartGame()
     {
         GameObject[] buildings = GameObject.FindGameObjectsWithTag("Building");
         Tuple<List<GameObject>, List<GameObject>> tuple = SetBuildingsType(buildings);
@@ -40,6 +43,7 @@ public class Building : MonoBehaviour
             SetupNPCs();
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -77,9 +81,20 @@ public class Building : MonoBehaviour
 
     void SetupNPCs()
     {
-        int nbPeople = Random.Range(1, 4);
+        int nbPeople;
+
+        if (preInfected != 0)
+        {
+            nbPeople = Random.Range(preInfected, preInfected + 4);
+        }
+        else
+        {
+            nbPeople = Random.Range(1, 4);
+        }
+
         for (int i = 0; i < nbPeople; i++)
         {
+            Debug.Log("Hello");
             GameObject npc = Instantiate(this.npc,transform.position,transform.rotation);
             People npcComponent = npc.GetComponent<People>();
             npcComponent.home = this.gameObject;
