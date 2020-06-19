@@ -12,7 +12,6 @@ public class PeopleInfection : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("Am I even here ?");
         isInfected = false;
         people = GetComponent<People>();
         

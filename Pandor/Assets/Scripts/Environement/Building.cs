@@ -94,7 +94,6 @@ public class Building : MonoBehaviour
 
         for (int i = 0; i < nbPeople; i++)
         {
-            Debug.Log("Hello");
             GameObject npc = Instantiate(this.npc,transform.position,transform.rotation);
             People npcComponent = npc.GetComponent<People>();
             npcComponent.home = this.gameObject;
@@ -105,6 +104,13 @@ public class Building : MonoBehaviour
                 npcComponent.AddFriend(homeBuildings[Random.Range(0, homeBuildings.Count)]);
             }
             npcComponent.AddCenter(centerBuildings[Random.Range(0, centerBuildings.Count)]);
+            if(preInfected != 0)
+            {
+                Debug.Log("Le isInfected dans la création : ");
+                Debug.Log(npcComponent.isInfected);
+                npcComponent.isInfected = true;
+                Debug.Log(npcComponent.isInfected);
+            }
         }
     }
 }

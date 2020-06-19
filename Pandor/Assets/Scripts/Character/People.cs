@@ -59,8 +59,7 @@ public class People : MonoBehaviour
                 Move();
             }
         }
-        //isInfected = peopleCollision.isInfected;
-        //Debug.Log("Is Infected" + isInfected);
+        isInfected = peopleCollision.isInfected;
     }
 
     private void SetTarget()
