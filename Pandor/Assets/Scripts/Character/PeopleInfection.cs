@@ -20,7 +20,8 @@ public class PeopleInfection : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player")
-            && (people.isInfected || other.gameObject.GetComponent<People>().isInfected))
+            //&& (people.isInfected || other.gameObject.GetComponent<People>().isInfected)
+            )
         {
             this.isInfected = TransmissionByCollision(isInfected);
             Debug.Log(isInfected);

@@ -46,7 +46,7 @@ public class CalculInfection : MonoBehaviour
         //Debug.Log("pouet" + infectedScript.getMasks());
         float risqueTotal;
 
-        risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 1000)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 1000))) + (risqueAvecGel * (infectedScript.getWashingHands() / 1000)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 1000))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 1000)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 1000)))) / 300;
+        risqueTotal = ((risqueAvecMasque * (infectedScript.getMasks() / 1000)) + (risqueSansMasque * (1 - (infectedScript.getMasks() / 1000))) + (risqueAvecGel * (infectedScript.getWashingHands() / 1000)) + (risqueSansGel * (1 - (infectedScript.getWashingHands() / 1000))) + (risqueAvecConfinement * (infectedScript.getQuarantineRespect() / 1000)) + (risqueSansConfinement * (1 - (infectedScript.getQuarantineRespect() / 1000)))) / 30;
         //Debug.Log("Risque total : " + risqueTotal + "%");
         maxIncrementValue = risqueTotal; // La vitesse d'augmentation maximale correspond au risque d'atrapper le virus (ex : si 100% de risque, 100% du foyer va finir contaminé très rapidement)
 
